@@ -1,0 +1,55 @@
+buildscript {
+	ext {
+        springContractVersion = '1.2.4.RELEASE'
+        dependencyManagementVersion = '0.6.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}"
+        classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${springContractVersion}"
+	}
+}
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'spring-cloud-contract'
+
+group = 'com.thoughtworks.rldd'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+
+ext {
+	springCloudVersion = 'Finchley.BUILD-SNAPSHOT'
+}
+
+dependencies {
+	compile('org.springframework.cloud:spring-cloud-starter-contract-stub-runner')
+	compile('org.codehaus.groovy:groovy')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+//verifierStubsJar {
+//    from("${rootProject.projectDir}/src/main/resources/contracts") {
+//        into("/contracts")
+//    }
+//}
+
+contracts {
+	contractsDslDir = file("${rootProject.projectDir}/src/main/resources/contracts")
+}
