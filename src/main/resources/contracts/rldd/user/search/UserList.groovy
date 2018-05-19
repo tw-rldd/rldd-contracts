@@ -1,4 +1,4 @@
-package contracts.rldd.user
+package contracts.rldd.user.search
 
 import org.springframework.cloud.contract.spec.Contract
 
