@@ -33,7 +33,7 @@ Contract.make {
                     users:
                         ['Yusong Deng', 'Yuexiang Gao', 'Yugang Zhou', 'Di Zhang', 'Jinghu Peng'].withIndex().collect {
                             [
-                                id      : it.getSecond(),
+                                id      : it.getSecond().toString(),
                                 username: it.getFirst(),
                                 avatar  : '',
                             ]
