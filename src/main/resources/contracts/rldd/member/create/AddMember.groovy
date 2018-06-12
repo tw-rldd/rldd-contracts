@@ -2,13 +2,19 @@ package contracts.rldd.member.create
 
 import org.springframework.cloud.contract.spec.Contract
 
-import static org.springframework.cloud.contract.spec.internal.HttpMethods.HttpMethod.DELETE
+import static org.springframework.cloud.contract.spec.internal.HttpMethods.HttpMethod.POST
 
 Contract.make {
     description "POST to create member"
     request {
-        urlPath "/members/004"
-        method DELETE
+        urlPath "/members"
+        method POST
+        headers {
+            contentType applicationJson()
+        }
+        body([
+            name: 'jinhu.peng'
+        ])
     }
     response {
         status 200
