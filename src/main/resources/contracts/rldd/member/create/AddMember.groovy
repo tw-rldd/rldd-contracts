@@ -7,14 +7,8 @@ import static org.springframework.cloud.contract.spec.internal.HttpMethods.HttpM
 Contract.make {
     description "POST to create member"
     request {
-        urlPath "/members"
+        urlPath "/members/004"
         method POST
-        headers {
-            contentType applicationJson()
-        }
-        body([
-            name: 'jinhu.peng'
-        ])
     }
     response {
         status 200
